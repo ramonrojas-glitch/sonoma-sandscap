@@ -346,7 +346,7 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(cart))}catch(e){}};
 const count=()=>cart.reduce((a,l)=>a+l.qty,0);
 const sub=()=>cart.reduce((a,l)=>a+l.qty*byId[l.id].price,0);
 const qtyOf=id=>cart.filter(l=>l.id===id).reduce((a,l)=>a+l.qty,0);
-function add(id,qty,nota){nota=(nota||'').trim().slice(0,140);const l=cart.find(x=>x.id===id&&(x.nota||'')===nota);if(l)l.qty=Math.min(20,l.qty+qty);else cart.push({id,qty,nota});save();track('carrito',{producto:byId[id].name,total:byId[id].price*qty});render()}
+function add(id,qty,nota){nota=(nota||'').trim().slice(0,140);const l=cart.find(x=>x.id===id&&(x.nota||'')===nota);if(l)l.qty=Math.min(20,l.qty+qty);else cart.push({id,qty,nota});save();track('carrito',{producto:byId[id].name,sku:id,qty,total:byId[id].price*qty});render()}
 function setLine(i,q){if(q<=0)cart.splice(i,1);else cart[i].qty=Math.min(20,q);save();render()}
 
 /* modo */
@@ -408,7 +408,7 @@ let view=null,lastFocus=null;const layer=$('layer');
 function show(html,label){lastFocus=lastFocus||document.activeElement;layer.innerHTML=`<div class="scrim" data-scrim><div class="modal" role="dialog" aria-modal="true" aria-label="${label}">${html}</div></div>`;document.documentElement.style.overflow='hidden';const f=layer.querySelector('.mx');if(f)f.focus({preventScroll:true})}
 function closeLayer(){view=null;layer.innerHTML='';document.documentElement.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});lastFocus=null}
 function openCart(){if(!count()){toast('Agrega un plato primero');return}view='cart';show(`<button class="mx" type="button" data-x aria-label="Cerrar">×</button><div class="sheet"><h4>Tu carrito</h4>${cartHTML()}</div>`,'Tu carrito')}
-function openItem(id){const p=byId[id];view='item';let q=1;
+function openItem(id){const p=byId[id];view='item';let q=1;track('ver_plato',{sku:id});
   const draw=()=>show(`<button class="mx" type="button" data-x aria-label="Cerrar">×</button>${p.img>=0?`<div class="mimg"><img src="${imgSrc(p)}" alt="${esc(p.name)}"></div>`:''}<div class="mb"><h3>${esc(p.name)}</h3><div class="mp num">${rd(p.price)}</div>${p.desc?`<p class="md">${esc(p.desc)}</p>`:''}${p.tag?`<span class="tag">${p.tag}</span>`:''}
     <label for="nota">Instrucciones especiales <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><textarea id="nota" maxlength="140" placeholder="Ej.: sin cebolla, término medio…"></textarea>
     <div class="madd"><div class="step"><button type="button" data-q="-1" aria-label="Menos">−</button><span class="num" id="mq">${q}</span><button type="button" data-q="1" aria-label="Más">+</button></div><button class="go" type="button" data-addit><span>Agregar ${q}</span><span class="num" id="mt">${rd(p.price*q)}</span></button></div></div>`,p.name);
