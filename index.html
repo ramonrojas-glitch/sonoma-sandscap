@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#141210">
 <link rel="icon" type="image/webp" href="/img/logo.webp">
 <meta property="og:title" content="Sonoma Bistro">
 <meta property="og:description" content="El arte del buen comer. Pide en línea y paga con un toque.">
@@ -12,7 +12,7 @@
 <title>Sonoma Bistro</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@500;600;700;800&family=Jost:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://piezza.sandscap.com.do/brinco/v1/kit.css">
 <script src="https://piezza.sandscap.com.do/brinco/v1/kit.js" defer></script>
 <style>
@@ -185,6 +185,88 @@ footer .ft{padding-block:26px 40px;color:var(--muted);font-size:13px;display:fle
 .fvault{margin:0}
 @media (prefers-reduced-motion:no-preference){.modal{animation:up .24s cubic-bezier(.2,.8,.2,1)}@keyframes up{from{transform:translateY(28px);opacity:.5}to{transform:none;opacity:1}}}
 </style>
+<style>
+/* diseño 2.0: banda oscura con la marca, fondo crema, tarjetas blancas, color del restaurante en lo que se toca */
+:root{
+  --bg:#F4EFE7; --ink:#141210; --muted:#5C554D; --faint:#6F675E; --line:#E2DACE; --chip:#FFFFFF; --card:#FFFFFF;
+  --accent:#141210; --on-accent:#FFFFFF; --brand:#8A5A2B; --on-brand:#FFFFFF; --night:#141210; --night-2:#2A2723; --night-line:#3A3631; --night-mut:#CFC8BE;
+  --warm:#141210; --warm-bg:#141210;
+  --f:'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif; --f-d:'Bricolage Grotesque','Manrope',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F0E0D; --ink:#F4EFE7; --muted:#B8B0A6; --faint:#9A9188; --line:#2B2824; --chip:#1A1816; --card:#1A1816;
+  --accent:#F4EFE7; --on-accent:#141210; --brand:#E0A86A; --on-brand:#141210; --night:#000000; --night-2:#1E1C1A; --night-line:#34302B; --warm:#F4EFE7; --warm-bg:#F4EFE7 } }
+:root[data-theme="dark"]{
+  --bg:#0F0E0D; --ink:#F4EFE7; --muted:#B8B0A6; --faint:#9A9188; --line:#2B2824; --chip:#1A1816; --card:#1A1816;
+  --accent:#F4EFE7; --on-accent:#141210; --brand:#E0A86A; --on-brand:#141210; --night:#000000; --night-2:#1E1C1A; --night-line:#34302B; --warm:#F4EFE7; --warm-bg:#F4EFE7 }
+
+.top{background:var(--night);color:#FFFFFF}
+body::before{background:var(--night)}
+.top.scrolled{border-color:var(--night-line)}
+.brandmini b{color:#FFFFFF}
+.tlink:hover{background:var(--night-2)}
+.cartbtn{background:var(--brand);color:var(--on-brand)}
+.notice{background:var(--night-2);color:var(--night-mut)}
+
+.hero{display:flow-root;background:var(--night);color:#FFFFFF;padding-bottom:26px}
+.cover .logo{border-color:var(--night)}
+.info .sub{color:var(--night-mut)}
+.info .sub span+span::before{color:#6F675E}
+.info h1{font-family:var(--f-d);font-size:clamp(34px,5vw,52px);line-height:1;letter-spacing:-.025em}
+.tagline{color:#E9E3DA}
+.seg{background:var(--night-2)}
+.seg button{color:#FFFFFF;height:44px}
+.seg button[aria-checked="true"]{background:#FFFFFF;color:#141210;box-shadow:none}
+.fact{border-color:var(--night-line);border-radius:14px}
+.fact b{font-weight:800}
+.fact span{color:var(--night-mut)}
+
+.search{background:var(--card);border:1.5px solid var(--line)}
+.search:focus-within{border-color:var(--ink)}
+.sec-h h2,.cat h3,.side h4,.sheet h4{font-family:var(--f-d);font-weight:800;letter-spacing:-.015em}
+.sec-h h2,.cat h3{font-size:clamp(24px,3vw,30px)}
+.sec-h small,.cat .cnt{font-weight:700}
+
+.feat{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 1px 0 var(--line)}
+.feat .ph{border-radius:0}
+.feat .nm{margin:12px 14px 0;font-weight:800}
+.feat .pr{margin:2px 14px 14px;color:var(--ink);font-weight:800;font-size:15px}
+.ftag{position:absolute;top:10px;left:10px;background:#141210;color:#FFFFFF;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.plus{border:3px solid var(--card);width:44px;height:44px;font-weight:800;box-shadow:none}
+.feat .plus{background:var(--brand);color:var(--on-brand);right:10px;bottom:10px}
+
+.tabs{background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs .wrap{gap:8px;padding-block:10px}
+.tab{height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);font-weight:700}
+.tab[aria-current="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+
+.rows{gap:12px 16px}
+.row{background:var(--card);border:0;border-radius:18px;padding:14px;align-items:stretch;box-shadow:0 1px 0 var(--line)}
+.row.in{box-shadow:inset 0 0 0 2px var(--brand)}
+.rn{font-weight:800}
+.rp{font-weight:800;color:var(--ink)}
+.rd{color:var(--muted)}
+.tag{background:#141210;color:#FFFFFF;text-transform:uppercase;letter-spacing:.04em;font-size:11px;font-weight:800;padding:3px 8px}
+.rimg{width:112px;height:112px;border-radius:14px}
+.rimg img{border-radius:14px}
+.plus{right:-6px;bottom:-6px;background:var(--ink);color:var(--card)}
+.qb{right:-6px;bottom:-6px;background:var(--brand);color:var(--on-brand);border:3px solid var(--card);min-width:44px;height:44px}
+.rimg.none .plus{border:3px solid var(--card)}
+
+.side{background:var(--card);border-color:var(--line);border-radius:18px}
+.go{background:var(--brand);color:var(--on-brand);border-radius:16px}
+.step{background:var(--bg)}
+.vbar{background:none}
+.vbar button{background:var(--night);color:#FFFFFF;border-radius:20px;height:64px;padding:0 18px 0 12px;box-shadow:0 10px 30px rgba(20,18,16,.35)}
+.vbar .cnt{background:var(--brand);color:var(--on-brand);border-radius:12px;min-width:40px;height:40px;font-size:16px}
+.modal{background:var(--bg)}
+.mb h3{font-family:var(--f-d);font-size:30px;line-height:1.05}
+.mb .mp{font-weight:800;font-size:20px}
+.mb textarea{border:1.5px solid var(--ink);background:var(--card);border-radius:14px}
+.madd .step{background:var(--card);border:1.5px solid var(--ink)}
+.toast{background:var(--night);color:#FFFFFF}
+footer .ft{border-top-color:var(--line)}
+</style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
 <body>
@@ -200,7 +282,7 @@ footer .ft{padding-block:26px 40px;color:var(--muted);font-size:13px;display:fle
 <div class="notice"><div class="wrap">Tienda en preparación: puedes armar tu pedido y probar la caja. Los cobros reales se activan cuando Sonoma conecte su cuenta de AZUL.</div></div>
 
 <main>
-<div class="wrap">
+<div class="hero"><div class="wrap">
   <div class="cover"><div class="img" role="img" aria-label="Plato de Sonoma Bistro"></div><img class="logo" src="img/logo.webp" alt="Sonoma Bistro"></div>
   <section class="info">
     <div>
@@ -216,6 +298,8 @@ footer .ft{padding-block:26px 40px;color:var(--muted);font-size:13px;display:fle
       <div class="facts" id="facts"></div>
     </div>
   </section>
+</div></div>
+<div class="wrap">
   <div class="searchrow"><label class="search" for="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar en Sonoma Bistro" autocomplete="off"></label></div>
 
   <div id="featWrap">
@@ -275,12 +359,12 @@ document.querySelector('.seg').addEventListener('click',e=>{const b=e.target.clo
 
 /* destacados */
 const feat=P.filter(p=>p.tag&&p.img>=0);
-$('rail').innerHTML=feat.map(p=>`<button class="feat" type="button" data-open="${p.id}"><div class="ph"><img src="${imgSrc(p)}" alt="" loading="lazy"><span class="plus" aria-hidden="true">+</span></div><div class="nm">${esc(p.name)}</div><div class="pr num">${rd(p.price)}</div></button>`).join('');
+$('rail').innerHTML=feat.map(p=>`<button class="feat" type="button" data-open="${p.id}"><div class="ph"><img src="${imgSrc(p)}" alt="" loading="lazy">${p.tag?`<span class="ftag">${p.tag}</span>`:''}<span class="plus" aria-hidden="true">+</span></div><div class="nm">${esc(p.name)}</div><div class="pr num">${rd(p.price)}</div></button>`).join('');
 
 /* pestañas y menú */
 const cats=MENU.map(c=>c.cat);
 $('tabs').innerHTML=cats.map((c,i)=>`<button class="tab" type="button" data-t="c-${SK(c)}" aria-current="${i===0}">${c}</button>`).join('');
-function rowHTML(p){const q=qtyOf(p.id);return `<button class="row" type="button" data-open="${p.id}" aria-label="${esc(p.name)}, ${rd(p.price)}"><div style="min-width:0"><div class="rn">${esc(p.name)}</div><div class="rp num">${rd(p.price)}</div>${p.desc?`<div class="rd">${esc(p.desc)}</div>`:''}${p.tag?`<span class="tag">${p.tag}</span>`:''}</div><div class="rimg${p.img>=0?'':' none'}">${p.img>=0?`<img src="${imgSrc(p)}" alt="" loading="lazy" width="116" height="116">`:''}${q?`<span class="qb num">${q}</span>`:`<span class="plus" aria-hidden="true">+</span>`}</div></button>`}
+function rowHTML(p){const q=qtyOf(p.id);return `<button class="row${q?' in':''}" type="button" data-open="${p.id}" aria-label="${esc(p.name)}, ${rd(p.price)}"><div style="min-width:0"><div class="rn">${esc(p.name)}</div><div class="rp num">${rd(p.price)}</div>${p.desc?`<div class="rd">${esc(p.desc)}</div>`:''}${p.tag?`<span class="tag">${p.tag}</span>`:''}</div><div class="rimg${p.img>=0?'':' none'}">${p.img>=0?`<img src="${imgSrc(p)}" alt="" loading="lazy" width="116" height="116">`:''}${q?`<span class="qb num">${q}</span>`:`<span class="plus" aria-hidden="true">+</span>`}</div></button>`}
 function renderMenu(){
   const term=$('q').value.trim().toLowerCase();
   const match=p=>!term||(p.name+' '+p.desc+' '+p.cat).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').includes(term.normalize('NFD').replace(/[\u0300-\u036f]/g,''));
